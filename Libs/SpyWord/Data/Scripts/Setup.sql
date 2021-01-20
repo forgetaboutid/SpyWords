@@ -1,0 +1,25 @@
+﻿--Spy Words database schema initialization script
+
+IF NOT EXISTS (SELECT object_id  FROM sys.tables  WHERE [Name] ='Games')
+BEGIN 
+  CREATE TABLE dbo.Games
+  (
+	Id char(36) NOT NULL
+  ) ON [PRIMARY]
+  
+  ALTER TABLE dbo.Games ADD CONSTRAINT PK_Games PRIMARY KEY CLUSTERED (Id) 
+  WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+END
+
+IF NOT EXISTS (SELECT object_id  FROM sys.tables  WHERE [Name] ='Players')
+BEGIN 
+  CREATE TABLE dbo.Players
+  (
+	Id char(36) NOT NULL,
+    Role int NULL,
+    Team int NULL,
+  ) ON [PRIMARY]
+  
+  ALTER TABLE dbo.Players ADD CONSTRAINT PK_Players PRIMARY KEY CLUSTERED (Id) 
+  WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+END
